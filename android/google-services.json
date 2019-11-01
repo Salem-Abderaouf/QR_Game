@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "155691431284",
+    "firebase_url": "https://live-781ec.firebaseio.com",
+    "project_id": "live-781ec",
+    "storage_bucket": "live-781ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155691431284:android:6c5fe3f8ba92a6895f2821",
+        "android_client_info": {
+          "package_name": "com.softvenue.esolution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155691431284-581h9a5jr5em71np4vg7m80j70jtc0d5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmVkZqpMBQnjaxGBRbkmv4c2-jCd9XslU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155691431284-581h9a5jr5em71np4vg7m80j70jtc0d5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
