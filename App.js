@@ -1,27 +1,20 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react'
+import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { SwitchNavigator } from 'react-navigation'// import the different screens
+import Loading from './Loading'
+import SignUp from './SignUp'
+import Login from './Login'
+import Main from './Main'// create our app's navigation stack
 
-import React ,{ Component }from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-export default class App extends Component{
-  render(){
-    return(
-      <View>
-        <Text>Hello World</Text>
-      </View>
-    )
+const App = SwitchNavigator(
+  {
+    Loading,
+    SignUp,
+    Login,
+    Main
+  },
+  {
+    initialRouteName: 'Loading'
   }
-} 
-
+)
+export default App;
