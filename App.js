@@ -18,6 +18,7 @@ const MainNavigator = createStackNavigator(
     initialRouteName: 'Loading'
   }
 )
+//just an comment to see merge conflit
 const App = createAppContainer(MainNavigator);
 
 export default App;
