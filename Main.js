@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View ,Button} from 'react-native'
 import firebase from 'react-native-firebase'
 
 export default class Main extends React.Component {
@@ -9,11 +9,16 @@ export default class Main extends React.Component {
       this.setState({ currentUser })
   }
   render() {
-    const { currentUser } = this.statereturn (
+    const { currentUser } = this.state
+    return (
       <View style={styles.container}>
         <Text>
-          Hi {currentUser && currentUser.email}!
+          Hi { currentUser && currentUser.username } !
         </Text>
+        <Button
+        title="Log out"
+        onPress={() => firebase.auth().signOut()}
+        />
       </View>
     )
   }
