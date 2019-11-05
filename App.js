@@ -5,7 +5,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Loading from './Loading'
 import SignUp from './SignUp'
 import Login from './Login'
-import Main from './Main'// create our app's navigation stack
+import Main from './Main'
 
 const MainNavigator = createStackNavigator(
   {
@@ -18,7 +18,6 @@ const MainNavigator = createStackNavigator(
     initialRouteName: 'Loading'
   }
 )
-//just an comment to see merge conflit
 const App = createAppContainer(MainNavigator);
 
 export default App;
