@@ -6,11 +6,14 @@ import firebase from 'react-native-firebase'
 export default class Main extends React.Component {
   static navigationOptions = {
     title:'Profile',
+    headerBackTitleVisible: false,
     headerRight:() => (
       <Icon.Button
-       name="facebook"
-       onPress={() => alert('Hola From fb ')}
-       backgroundColor="#3b5998"
+       name="sign-out"
+       onPress={() => firebase.auth().signOut()}
+       color="#192033"
+       fontSize="22"
+       backgroundColor="#ffffff"
       />
     )
   }
@@ -26,10 +29,6 @@ export default class Main extends React.Component {
         <Text>
           Hi { currentUser && currentUser.username } !
         </Text>
-        <Button
-        title="Log out"
-        onPress={() => firebase.auth().signOut()}
-        />
       </View>
     )
   }
