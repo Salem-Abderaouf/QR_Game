@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Platform, Image, Text, View ,Button} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase'
+import QrPage from './QrPage'
 
 export default class Main extends React.Component {
   static navigationOptions = {
@@ -11,7 +12,7 @@ export default class Main extends React.Component {
       <Icon.Button
        name="sign-out"
        onPress={() => firebase.auth().signOut()}
-       color="#192033"
+       color="#4169e1"
        fontSize="22"
        backgroundColor="#ffffff"
       />
@@ -26,9 +27,12 @@ export default class Main extends React.Component {
     const { currentUser } = this.state
     return (
       <View style={styles.container}>
-        <Text>
-          Hi { currentUser && currentUser.username } !
+        <View>
+        <Text style={styles.txt}> 
+          Hi { currentUser && currentUser.email.replace('@gmail.com',' ')} 
         </Text>
+      <QrPage />
+          </View>
       </View>
     )
   }
@@ -37,5 +41,10 @@ export default class Main extends React.Component {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  txt:{
+    marginTop:20,
+    marginBottom:50,
+    fontSize:16,
   }
 })
