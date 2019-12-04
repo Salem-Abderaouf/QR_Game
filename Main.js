@@ -18,7 +18,7 @@ export default class Main extends React.Component {
       />
     )
   }
-    state = { currentUser: null }  
+    state = { currentUser: null }
   componentDidMount() {
       const { currentUser } =  firebase.auth()
       this.setState({ currentUser })
@@ -28,23 +28,23 @@ export default class Main extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-        <Text style={styles.txt}> 
-          Hi { currentUser && currentUser.email.replace('@gmail.com',' ')} 
+        <Text style={styles.txt}>
+          Hi { currentUser && currentUser.email.replace('@gmail.com',' ')}
         </Text>
-      <QrPage />
+        <QrPage />
           </View>
       </View>
     )
   }
 }const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flex:1,
+    alignItems:"center",
   },
   txt:{
-    marginTop:20,
-    marginBottom:50,
+    textAlign:'center',
+    marginTop:25,
+    marginBottom:25,
     fontSize:16,
   }
 })
