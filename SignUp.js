@@ -5,7 +5,8 @@ import firebase from 'react-native-firebase'
 export default class SignUp extends React.Component {
 
     static navigationOptions = {
-        title:'Welcome',
+        title:'Sign Up',
+        headerLeft: null,
     };
     state = { username: '',email: '', password: '', errorMessage: null }  
     handleSignUp = () => {

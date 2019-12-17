@@ -1,6 +1,7 @@
 package com.live;
 
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import org.reactnative.camera.RNCameraPackage;
 import android.app.Application;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
+          packages.add(new RNFirebaseFirestorePackage());
           packages.add(new RNFirebaseAuthPackage());
           return packages;
         }

@@ -4,6 +4,10 @@ import firebase from 'react-native-firebase'
 
 
 export default class Login extends React.Component {
+  static navigationOptions = {
+    title:'Sign In',
+    headerLeft: null,
+    };
     state = { email: '', password: '', errorMessage: null }
     handleLogin = () => {
       const { email, password } = this.state
@@ -17,10 +21,8 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Login</Text>
-        {this.state.errorMessage &&
-          <Text style={{ color: 'red' }}>
-            {this.state.errorMessage}
-          </Text>}
+        {this.state.errorMessage && <Text style={{ color: 'red' }}>
+        {this.state.errorMessage} </Text>}
         <TextInput
           style={styles.textInput}
           autoCapitalize="none"

@@ -1,13 +1,13 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View ,Button} from 'react-native'
+import { StyleSheet, ScrollView, Image, Text, View ,Button} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase'
 import QrPage from './QrPage'
 
 export default class Main extends React.Component {
   static navigationOptions = {
-    title:'Profile',
-    headerBackTitleVisible: false,
+    title:'QR Game',
+    headerLeft: null,
     headerRight:() => (
       <Icon.Button
        name="sign-out"
@@ -18,7 +18,7 @@ export default class Main extends React.Component {
       />
     )
   }
-    state = { currentUser: null }
+  state = { currentUser: null }
   componentDidMount() {
       const { currentUser } =  firebase.auth()
       this.setState({ currentUser })
@@ -29,7 +29,7 @@ export default class Main extends React.Component {
       <View style={styles.container}>
         <View>
         <Text style={styles.txt}>
-          Hi { currentUser && currentUser.email.replace('@gmail.com',' ')}
+          Hi { currentUser && currentUser.email.slice(0, currentUser.email.indexOf("@"))}
         </Text>
         <QrPage />
           </View>
