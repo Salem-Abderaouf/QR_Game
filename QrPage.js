@@ -12,7 +12,7 @@ export default class QrPage extends Component {
           student: null,
           response: ""
         }
-    // read the user answer 
+    // read the user answer
     updateTextInput = (text, field) => {
         const state = this.state
         state[field] = text;
@@ -23,7 +23,7 @@ export default class QrPage extends Component {
         const state = this.state
         state['student'] = firebase.auth()
         //const { student } =  firebase.auth()
-        console.log(state.student)
+        console.log(state.student._user.email)
         this.setState(state)
     }
     //Trigger to Send data to firebase
@@ -34,8 +34,9 @@ export default class QrPage extends Component {
         //const { student } = this.state
         //console.log({student})
         this.ref.add({
-          student: this.state.student ,
+          student: this.state.student._user.email ,
           response: this.state.response,
+          
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
@@ -44,7 +45,7 @@ export default class QrPage extends Component {
           });
         });
       }
-    
+
     // QR Code Detection
     barcodeRecognized = ({ barcodes }) => {
         barcodes.forEach(barcode => console.warn(barcode.data))
@@ -72,15 +73,12 @@ export default class QrPage extends Component {
                     <Button
                     title="Submit"
                     style={styles.Button}
-                    onPress={() =>{ 
+                    onPress={() =>{
                     if (this.state.response == '') {
-                      Alert.alert('Warn','Answer Sould Not be Empty')
-                    }else{
-                      this.saveAns()
+                      Alert.alert('Warn','Answer Sould Not be Empty')}else{this.saveAns()}
                     }
                     }
-                    }
-                    title='Submit Answer' 
+                    title='Submit'
                     color='#841584'
                     />
                 </View>
