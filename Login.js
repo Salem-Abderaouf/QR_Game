@@ -5,7 +5,7 @@ import firebase from 'react-native-firebase'
 
 export default class Login extends React.Component {
   static navigationOptions = {
-    title:'Sign In',
+    title:'Log In',
     headerLeft: null,
     };
     state = { email: '', password: '', errorMessage: null }
@@ -38,7 +38,7 @@ export default class Login extends React.Component {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Login" onPress={this.handleLogin} />
+        <Button style = {styles.btn} title="Login" onPress={this.handleLogin} />
         <Button
           title="Don't have an account? Sign Up"
           onPress={() => this.props.navigation.navigate('SignUp')}
@@ -58,5 +58,9 @@ export default class Login extends React.Component {
     borderColor: 'gray',
     borderWidth: 1,
     marginTop: 8
+  },
+  btn : {
+    fontSize:22,
+    backgroundColor : '#ff0000'
   }
 })
