@@ -1,14 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button ,TouchableHighlight} from 'react-native'
 import firebase from 'react-native-firebase'
 
 export default class SignUp extends React.Component {
 
     static navigationOptions = {
-        title:'Sign Up',
+        title:'SIGN UP',
         headerLeft: null,
+        headerTitleStyle:{
+          color:'#1C1C1E'
+        }
     };
-    state = { username: '',email: '', password: '', errorMessage: null }  
+    state = { email: '', password: '', errorMessage: null }
     handleSignUp = () => {
       firebase
         .auth()
@@ -19,20 +22,12 @@ export default class SignUp extends React.Component {
 render() {
     return (
       <View style={styles.container}>
-        <Text>Sign Up</Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
           </Text>}
-          <TextInput
-          placeholder="User Name"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={username => this.setState({ username })}
-          value={this.state.username}
-        />
         <TextInput
-          placeholder="Email"
+          placeholder="  Email"
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={email => this.setState({ email })}
@@ -40,17 +35,26 @@ render() {
         />
         <TextInput
           secureTextEntry
-          placeholder="Password"
+          placeholder="  Password"
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
-        <Button
-          title="Already have an account? Login"
+       
+      <TouchableHighlight
+            style={styles.submit}
+            onPress={this.handleSignUp}
+      >
+        <Text style={styles.submitText}>SIGN UP</Text>
+      </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.submit}
           onPress={() => this.props.navigation.navigate('Login')}
-        />
+        >
+        <Text style={styles.submitText}>Already Have an account? LOGIN</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -63,8 +67,23 @@ render() {
   textInput: {
     height: 40,
     width: '90%',
-    borderColor: 'gray',
+    borderColor: 'grey',
+    borderRadius:8,
     borderWidth: 1,
     marginTop: 8
+  },
+  submit:{
+    marginTop:8,
+    width:'90%',
+    backgroundColor:'#fe4598',
+    borderRadius:25,
+    padding:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  submitText:{
+    color:'#fff',
+    textAlign:'center',
   }
+
 })
