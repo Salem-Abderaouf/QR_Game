@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react'
-import {View ,Text,TextInput,Button,StyleSheet ,Alert } from 'react-native'
+import {View ,Text,TextInput,Button,StyleSheet ,Alert ,ScrollView} from 'react-native'
 import { RNCamera } from 'react-native-camera';
 import firebase from 'react-native-firebase'
 import db from './Firebase';
@@ -10,14 +10,14 @@ export default class QrPage extends Component {
         }
         state = {
           student: null,
-          response: ""
+          response: "",
         }
     // read the user answer
     updateTextInput = (text, field) => {
         const state = this.state
         state[field] = text;
         this.setState(state);
-    }
+      }
     //lifecycle func to fetch data
     componentDidMount() {
         const state = this.state
@@ -28,28 +28,21 @@ export default class QrPage extends Component {
     }
     //Trigger to Send data to firebase
     saveAns() {
-        //this.setState({
-        //    student : toString(firebase.auth().email),
-        //});
-        //const { student } = this.state
-        //console.log({student})
         this.ref.add({
           student: this.state.student._user.email ,
           response: this.state.response,
-          
+
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
-          this.setState({
-            isLoading: false,
-          });
         });
       }
 
     // QR Code Detection
-    barcodeRecognized = ({ barcodes }) => {
-        barcodes.forEach(barcode => console.warn(barcode.data))
-      };
+        barcodeRecognized = ({ barcodes }) => {
+        barcodes.forEach(barcode => barcode.data )
+        };
+
     render(){
         return (
             <View style={{flex:1}}>
@@ -57,17 +50,17 @@ export default class QrPage extends Component {
                 <RNCamera
                     ref={ref => {this.camera = ref; }}
                     style={{ height:'100%',width:'100%' }}
-                    onGoogleVisionBarcodesDetected={this.barcodeRecognized}
-                >
+                    onGoogleVisionBarcodesDetected={this.barcodeRecognized}>
                 </RNCamera>
-                </View>
+              </View>
                 <View style={{flex:2}}>
-                    <Text>{ /* */}</Text>
+                    <Text>{  }</Text>
                     <TextInput
+                    ref={input=>{this.answre = input}}
                     multiline={true}
                     placeholder="Your Answer"
                     style = {styles.textInput}
-                    value={this.state.response}
+                    value = {this.state.response}
                     onChangeText={(text) => this.updateTextInput(text, 'response')}
                     />
                     <Button
@@ -75,14 +68,19 @@ export default class QrPage extends Component {
                     style={styles.Button}
                     onPress={() =>{
                     if (this.state.response == '') {
-                      Alert.alert('Warn','Answer Sould Not be Empty')}else{this.saveAns()}
+                      Alert.alert('Warn','Answer Sould Not be Empty')}
+                      else{
+                        Alert.alert('Thank you ','Your Answer Have Been Sent')
+                        this.saveAns()
+                        this.answre.clear()
+                      }
                     }
                     }
                     title='Submit'
-                    color='#841584'
+                    color='#fece00'
                     />
                 </View>
-            </View>
+          </View>
         )
     }
 }
