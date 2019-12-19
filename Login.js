@@ -69,7 +69,7 @@ export default class Login extends React.Component {
   submit:{
     marginTop:8,
     width:'90%',
-    backgroundColor:'#fe4598',
+    backgroundColor:'#8e44ad',
     borderRadius:25,
     padding:10,
     borderWidth: 1,
