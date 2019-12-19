@@ -10,10 +10,9 @@ export default class Main extends React.Component {
     headerLeft: null,
     headerRight:() => (
       <Icon.Button
-       name="sign-out"
+       name="arrow-right"
        onPress={() => firebase.auth().signOut()}
-       color="#4169e1"
-       fontSize="22"
+       color="#8e44ad"
        backgroundColor="#ffffff"
       />
     )
@@ -43,8 +42,8 @@ export default class Main extends React.Component {
   },
   txt:{
     textAlign:'center',
-    marginTop:25,
-    marginBottom:25,
+    marginTop:10,
+    marginBottom:15,
     fontSize:16,
   }
 })
