@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react'
-import {View ,Text,TextInput,Button,StyleSheet ,Alert ,ScrollView} from 'react-native'
+import {View ,Text,TextInput,Button,StyleSheet ,Alert ,TouchableHighlight} from 'react-native'
 import { RNCamera } from 'react-native-camera';
 import firebase from 'react-native-firebase'
 import db from './Firebase';
@@ -40,7 +40,7 @@ export default class QrPage extends Component {
 
     // QR Code Detection
         barcodeRecognized = ({ barcodes }) => {
-        barcodes.forEach(barcode => barcode.data )
+        barcodes.forEach(barcode => Alert.alert('Question',barcode.data) )
         };
 
     render(){
@@ -54,31 +54,29 @@ export default class QrPage extends Component {
                 </RNCamera>
               </View>
                 <View style={{flex:2}}>
-                    <Text>{  }</Text>
                     <TextInput
                     ref={input=>{this.answre = input}}
                     multiline={true}
-                    placeholder="Your Answer"
+                    placeholder="  Answer..                                                    "
                     style = {styles.textInput}
                     value = {this.state.response}
                     onChangeText={(text) => this.updateTextInput(text, 'response')}
                     />
-                    <Button
-                    title="Submit"
-                    style={styles.Button}
-                    onPress={() =>{
-                    if (this.state.response == '') {
-                      Alert.alert('Warn','Answer Sould Not be Empty')}
-                      else{
-                        Alert.alert('Thank you ','Your Answer Have Been Sent')
-                        this.saveAns()
-                        this.answre.clear()
-                      }
-                    }
-                    }
-                    title='Submit'
-                    color='#fece00'
-                    />
+          <TouchableHighlight
+          style={styles.submit}
+          onPress={() =>{
+            if (this.state.response == '') {
+              Alert.alert('Warn','Answer Sould Not be Empty')}
+              else{
+                Alert.alert('Thank you ','Your Answer Have Been Sent')
+                this.saveAns()
+                this.answre.clear()
+              }
+            }
+            }
+        >
+        <Text style={styles.submitText}>SUBMIT</Text>
+        </TouchableHighlight>
                 </View>
           </View>
         )
@@ -86,11 +84,25 @@ export default class QrPage extends Component {
 }
 const styles = StyleSheet.create({
 textInput: {
-    borderBottomColor :'grey',
-    borderBottomWidth: 1,
-    marginBottom: 8,
+    backgroundColor:'white',
+    borderColor :'grey',
+    borderWidth:1,
+    height:40,
     width:'100%',
-    marginLeft:'auto',
-    marginRight:'auto'
+    marginTop: 25,
+    borderRadius:8,
+  },
+  submit:{
+    marginTop:8,
+    width:'100%',
+    backgroundColor:'#8e44ad',
+    borderRadius:8,
+    padding:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  submitText:{
+    color:'#fff',
+    textAlign:'center',
   }
 })
